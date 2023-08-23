@@ -6,7 +6,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, up, down, left, right, color, health, attackA):
         super().__init__()
         # Player character-ийн урт ба өргөн.
-        self.image = pygame.Surface((50, 50))
+        self.image = pygame.Surface((50, 70))
         # Player character-ийн өнгө.
         self.color = (color)
         self.image.fill((color))
@@ -18,6 +18,9 @@ class Player(pygame.sprite.Sprite):
         # Player character-ийн хурд ба амь.
         self.speed = 10
         self.health = health
+        self.mass = 1
+        self.gravity = 10
+        self.jumping = False
         
         # up, down, left, right-ийн оронд бид гар keyboard-ний товчлуурууд хуваарьлах бөгөөд self.up/down/left/right дээр тусгаж авч буй нь:
         self.up =  up
@@ -31,16 +34,26 @@ class Player(pygame.sprite.Sprite):
         # Энэ нь Товчлуур дарагдаж буйг шалгадаг функцийг өөр дээрээ хадгалж өгч байгаа юм.
         keys = pygame.key.get_pressed()
         
+        
+
+        if self.jumping:
+            self.mass -= 10
+            self.jumping = False
+        if self.mass < 1:
+            self.mass += 1
+                                        # Force 
+        self.rect.y = self.rect.y + (self.mass * self.gravity)
+
+
         # Дараа нь, left, right, up, down гэдэг дээр хуваарьлагдсан товчнууд дарагдаж байвал 
         # Player character-ийн x эсвэл y өгөгдлийг өөрийнх нь speed өгөгдлөөр хасч эсвэл нэмж өгч буй нь
         if keys[self.left]:
             self.rect.x -= self.speed
         if keys[self.right]:
             self.rect.x += self.speed
-        if keys[self.up]:
-            self.rect.y -= self.speed
-        if keys[self.down]:
-            self.rect.y += self.speed
+        
+        # if keys[self.down]:
+            # self.rect.y += self.speed
 
 
         # Дэлгэцнээс гардаггүй болох хэсэг.

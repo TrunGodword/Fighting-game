@@ -11,6 +11,8 @@ def run_game():
     clock = pygame.time.Clock()
     
 
+    player1 = player.Player(100, 100, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, (255, 0, 0), 100, pygame.K_j)
+    player2 = player.Player(500, 100, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, (0, 255, 0), 100, pygame.K_k)
     # Дэлгэцний тохиргоо. Өргөн нь 640, урт нь 480
     screen_width = 640
     screen_height = 480
@@ -18,20 +20,21 @@ def run_game():
     
     # Цонхны дээр гарж ирэх Application-ий нэрийг солих. Жишээ нь: "Fighting Game"
     pygame.display.set_caption("Fighting game")
+    font = pygame.font.Font(None, 32)
+    text1 = font.render(str(player1.mass), True, (0, 0, 0))
+    text1_rect = text1.get_rect(center=(32, 32))
 
-    text1 = menu.Text("Play", screen_width/2, screen_height/2 - 100, (0, 0, 0))
-    text2 = menu.Text("Settings", screen_width/2, screen_height/2, (0, 0, 0))
-    text3 = menu.Text("Quit", screen_width/2, screen_height/2 + 100, (0, 0, 0))
+    # text1 = menu.Text("Play", screen_width/2, screen_height/2 - 100, (0, 0, 0))
+    # text2 = menu.Text("Settings", screen_width/2, screen_height/2, (0, 0, 0))
+    # text3 = menu.Text("Quit", screen_width/2, screen_height/2 + 100, (0, 0, 0))
 
     # Player 1 ба 2-т Player гэдэг Class-ийг хуваарьлан, тус тусд нь өөрийн гэсэн тохиргоог нь хаалтан дотор бичих.
-    player1 = player.Player(100, 400, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, (255, 0, 0), 100, pygame.K_j)
-    player2 = player.Player(500, 400, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, (0, 255, 0), 100, pygame.K_k)
     # Бүх player-уудыг нэг групп дотор оруулах. Ингэж байгаа нь дараа нь player хоорондын харьцааг илүү амархан тохируулах боломжтой болгож байгаа вм.
     all_sprites = pygame.sprite.Group(player1, player2)
 
     # Text үүсгээд, утганд нь тухайн player-үүдийн амийг шилжүүлж өгж байгаа нь.
     
-    text_sprites = (pygame.sprite.Group(text1, text2, text3))
+    # text_sprites = (pygame.sprite.Group(text1, text2, text3))
     
 #~~~Хэсэг 2: Update хийгдэх хэсэн буюу тоглоомны гол EVENT LOOP:
     while True:
@@ -42,13 +45,16 @@ def run_game():
 
             # Хэрвээ Player1 эсвэл Player2 тус тусын дайралт хийдэг товч буюу J/K-г дарвал өрсөлдөгчийн амь нь буурах.
             # Бас дээрээс нь өрсөлдөгчийн амийг хадгалсан text-ийг update хийж өгөх
-            # elif event.type == pygame.KEYDOWN:
-            #     if event.key == player1.attackA:
+            elif event.type == pygame.KEYDOWN:
+            #     if event.key == player1.up:
+            #         text1 = font.render(str(player1.mass), True, (0, 0, 0))
+                    
+
             #         player2.health -= 3
             #         text2 = font.render(str(player2.health), True, (0, 0, 0))
-            #     elif event.key == player2.attackA:
-            #         player1.health -= 3
-            #         text1 = font.render(str(player1.health), True, (0, 0, 0))
+                if event.key == player1.up:
+                    player1.jumping = True
+                    text1 = font.render(str(player1.mass), True, (0, 0, 0))
 
 
         
@@ -67,6 +73,7 @@ def run_game():
         # Секүнд бүрт уншигдах frame-ийг 60 буюу хамгийн их хэрэглэгддэг тогтмол frame-ээр хязгаарлаж өгөх.
         clock.tick(60)
         all_sprites.update()
+        screen.blit(text1, text1_rect)
         # Эцэст нь screen буюу дэлгэцийг зурна.
         all_sprites.draw(screen)
         # text_sprites.draw(screen)
