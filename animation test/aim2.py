@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
 	def update(self,speed):
 		if self.attack_animation == True:
 			frames2.current_sprite += speed
-			if int(frames2.current_sprite) >= len(frames2.sprites2):
+			if int(frames2.current_sprite) >= len(frames2.sprites):
 				frames2.current_sprite = 4
 				self.attack_animation = False
 
