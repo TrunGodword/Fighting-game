@@ -3,7 +3,7 @@ import pygame
 class Player(pygame.sprite.Sprite):
     # def __init__ буюу Class хуваарьлагдахад автоматаар уншигдах функц:
     # Хамгийн эхний (self) гэж буй нь өөрт хуваарьлагдаж буй бүх өгөгдлийг өөр дээрээ буулгаж өгөх нэршил юм.
-    def __init__(self, x, y, up, down, left, right, color, health, attackA):
+    def __init__(self, x, y, up, down, left, right, color, health, attackA ,sprite_sheet, animation_steps):
         super().__init__()
         # Player character-ийн урт ба өргөн.
         self.image = pygame.Surface((50, 70))
@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.mass = 1
         self.gravity = 10
         self.jumping = False
+        self.animation_list = self.load_images(sprite_sheet, animation_steps)
         
         # up, down, left, right-ийн оронд бид гар keyboard-ний товчлуурууд хуваарьлах бөгөөд self.up/down/left/right дээр тусгаж авч буй нь:
         self.up =  up
@@ -29,13 +30,13 @@ class Player(pygame.sprite.Sprite):
         self.right = right
         self.attackA = attackA
     
+    
     # Update хэсэг буюу Player character-ийн EVENT LOOP:
     def update(self):
         # Энэ нь Товчлуур дарагдаж буйг шалгадаг функцийг өөр дээрээ хадгалж өгч байгаа юм.
         keys = pygame.key.get_pressed()
         
         
-
         if self.jumping:
             self.mass -= 10
             self.jumping = False

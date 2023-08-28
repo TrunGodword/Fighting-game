@@ -1,20 +1,11 @@
-import pygame, sys
+import pygame, sys, frames
 
 class Player(pygame.sprite.Sprite):
 	def __init__(self, pos_x, pos_y):
 		super().__init__()
 		self.attack_animation = False
-		self.sprites = []
-		self.sprites.append(pygame.image.load('attack1.png'))
-		self.sprites.append(pygame.image.load('attack2.png'))
-		self.sprites.append(pygame.image.load('attack3.png'))
-		self.sprites.append(pygame.image.load('attack4.png'))
-		self.sprites.append(pygame.image.load('attack5.png'))
-		self.sprites.append(pygame.image.load('attack6.gif'))
-		self.sprites.append(pygame.image.load('attack7.gif'))
-		self.sprites.append(pygame.image.load('attack8.gif'))
-		self.current_sprite = 0
-		self.image = self.sprites[self.current_sprite]
+		
+		self.image = frames.sprites[frames.current_sprite]
 
 		self.rect = self.image.get_rect()
 		self.rect.topleft = [pos_x,pos_y]
@@ -24,12 +15,12 @@ class Player(pygame.sprite.Sprite):
 
 	def update(self,speed):
 		if self.attack_animation == True:
-			self.current_sprite += speed
-			if int(self.current_sprite) >= len(self.sprites):
-				self.current_sprite = 4
+			frames.current_sprite += speed
+			if int(frames.current_sprite) >= len(frames.sprites):
+				frames.current_sprite = 4
 				self.attack_animation = False
 
-		self.image = self.sprites[int(self.current_sprite)]
+		self.image = frames.sprites[int(frames.current_sprite)]
 
 # General setup
 pygame.init()
@@ -59,6 +50,6 @@ while True:
 	# Drawing
 	screen.fill((122,122,122))
 	moving_sprites.draw(screen)
-	moving_sprites.update(0.05)
+	moving_sprites.update(0.2)
 	pygame.display.flip()
 	clock.tick(60)
