@@ -1,4 +1,4 @@
-import sys, pygame
+import pygame
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, up, down, left, right, color, health, attackA):
@@ -26,7 +26,6 @@ class Player(pygame.sprite.Sprite):
     
     def update(self):
         keys = pygame.key.get_pressed()
-
         
         if self.mass < self.initialmass:
             self.mass += 1
@@ -36,7 +35,6 @@ class Player(pygame.sprite.Sprite):
         else:
             self.jumping = False
             self.jumpcd = 40
-                
         
         self.rect.y += self.mass + (self.gravity * self.dt)
 
