@@ -5,14 +5,14 @@ class Player(pygame.sprite.Sprite):
 		super().__init__()
 		self.attack_animation = False
 		self.sprites = []
-		self.sprites.append(pygame.image.load('attack1.png'))
-		self.sprites.append(pygame.image.load('attack2.png'))
-		self.sprites.append(pygame.image.load('attack3.png'))
-		self.sprites.append(pygame.image.load('attack4.png'))
-		self.sprites.append(pygame.image.load('attack5.png'))
-		self.sprites.append(pygame.image.load('attack6.gif'))
-		self.sprites.append(pygame.image.load('attack7.gif'))
-		self.sprites.append(pygame.image.load('attack8.gif'))
+		self.sprites.append(pygame.image.load('./frime3/tack1.gif'))
+		self.sprites.append(pygame.image.load('./frime3/tack2.gif'))
+		self.sprites.append(pygame.image.load('./frime3/tack3.gif'))
+		self.sprites.append(pygame.image.load('./frime3/tack4.gif'))
+		self.sprites.append(pygame.image.load('./frime3/tack5.gif'))
+		self.sprites.append(pygame.image.load('./frime3/tack6.gif'))
+		self.sprites.append(pygame.image.load('./frime3/tack7.gif'))
+		self.sprites.append(pygame.image.load('./frime3/tack8.gif'))
 		self.current_sprite = 0
 		self.image = self.sprites[self.current_sprite]
 
