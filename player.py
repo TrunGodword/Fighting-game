@@ -1,4 +1,4 @@
-import pygame
+import sys, pygame
 
 class Player(pygame.sprite.Sprite):
     # def __init__ буюу Class хуваарьлагдахад автоматаар уншигдах функц:
@@ -18,9 +18,12 @@ class Player(pygame.sprite.Sprite):
         # Player character-ийн хурд ба амь.
         self.speed = 10
         self.health = health
-        self.mass = 1
+        self.mass = 20
         self.gravity = 10
         self.jumping = False
+        self.jumpcd = 40
+        self.initialmass = self.mass
+        self.dt = round(1/60, 4)
         
         # up, down, left, right-ийн оронд бид гар keyboard-ний товчлуурууд хуваарьлах бөгөөд self.up/down/left/right дээр тусгаж авч буй нь:
         self.up =  up
@@ -33,17 +36,19 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         # Энэ нь Товчлуур дарагдаж буйг шалгадаг функцийг өөр дээрээ хадгалж өгч байгаа юм.
         keys = pygame.key.get_pressed()
-        
-        
 
-        if self.jumping:
-            self.mass -= 10
-            self.jumping = False
-        if self.mass < 1:
+        
+        if self.mass < self.initialmass:
             self.mass += 1
-                                        # Force 
-        self.rect.y = self.rect.y + (self.mass * self.gravity)
 
+        if self.jumping == True and self.jumpcd >= 1:
+            self.jumpcd -= 1
+        else:
+            self.jumping = False
+            self.jumpcd = 40
+                
+        
+        self.rect.y += self.mass + (self.gravity * self.dt)
 
         # Дараа нь, left, right, up, down гэдэг дээр хуваарьлагдсан товчнууд дарагдаж байвал 
         # Player character-ийн x эсвэл y өгөгдлийг өөрийнх нь speed өгөгдлөөр хасч эсвэл нэмж өгч буй нь
@@ -51,10 +56,17 @@ class Player(pygame.sprite.Sprite):
             self.rect.x -= self.speed
         if keys[self.right]:
             self.rect.x += self.speed
+        if keys[self.up] and self.jumping == False:
+            self.mass = -(self.mass)
+            self.jumping = True
+    
         
-        # if keys[self.down]:
-            # self.rect.y += self.speed
-
+        # for event in pygame.event.get():
+        #     if event.type == pygame.QUIT:
+        #         sys.exit()
+        #     elif event.type == pygame.KEYDOWN:
+        #         if event.key == self.up:
+        #             self.jumping = True
 
         # Дэлгэцнээс гардаггүй болох хэсэг.
         # Хэрвээ Player character-ийн x эсвэл y дэлгэцний өөрийн урт эсвэл өргөнөөс хэтэрвэл,
