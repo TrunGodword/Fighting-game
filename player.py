@@ -1,14 +1,17 @@
 import pygame
+import settings
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x, y, up, down, left, right, color, health, attackA):
+    def __init__(self, x, y, up, down, left, right, color, health, attackA, sizex, sizey):
         super().__init__()
-        self.image = pygame.Surface((50, 70))
+        self.image = pygame.Surface((sizex, sizey))
         self.color = (color)
         self.image.fill((color))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+        self.sizex = sizex
+        self.sizey = sizey
         self.speed = 10
         self.health = health
         self.mass = 20
@@ -29,7 +32,7 @@ class Player(pygame.sprite.Sprite):
         
         if self.mass < self.initialmass:
             self.mass += 1
-
+            
         if self.jumping == True and self.jumpcd >= 1:
             self.jumpcd -= 1
         else:
@@ -48,10 +51,10 @@ class Player(pygame.sprite.Sprite):
 
         if self.rect.left < 0:
             self.rect.left = 0
-        elif self.rect.right > 640:
-            self.rect.right = 640
+        elif self.rect.right > settings.maxWidth:
+            self.rect.right = settings.maxWidth
     
         if self.rect.top < 0:
             self.rect.top = 0
-        elif self.rect.bottom > 480:
-            self.rect.bottom = 480
+        elif self.rect.bottom > settings.maxHeight:
+            self.rect.bottom = settings.maxHeight
