@@ -42,46 +42,51 @@ def run_game():
     
     pygame.draw.rect(collision.surface, (0,0,255), collision.surface.get_rect(), 3)
    
+    collision.lines[0].append(collision.surface)
 
     while True:
+        objectCollide = collision.checkCollision(playerObjects)
         text1 = font.render(str(player1.rect.x), True, (255,255,255))
-        text2 = font.render(str(collision.checkCollision(playerObjects)[0]), True, (255,255,255))
+        text2 = font.render(str(objectCollide[0]), True, (255,255,255))
         text3 = font.render(str(collision.xlines), True, (255,255,255))
-        text4 = font.render(str(collision.checkCollision(playerObjects)[1]), True, (255,255,255))
+        text4 = font.render(str(objectCollide[1]), True, (255,255,255))
         text5 = font.render(str(player2.rect.x), True, (255,255,255))
-        text6 = font.render(str(collision.checkCollision(playerObjects)[4]), True, (255,255,255))
-        text7 = font.render(str(collision.checkCollision(playerObjects)[5]), True, (255,255,255))
+        text6 = font.render(str(objectCollide[4]), True, (255,255,255))
+        text7 = font.render(str(objectCollide[5]), True, (255,255,255))
 
         text8 = font.render(str(player1.rect.y), True, (255,255,255))
-        text9 = font.render(str(collision.checkCollision(playerObjects)[2]), True, (255,255,255))
-        text10 = font.render(str(collision.checkCollision(playerObjects)[3]), True, (255,255,255))
+        text9 = font.render(str(objectCollide[2]), True, (255,255,255))
+        text10 = font.render(str(objectCollide[3]), True, (255,255,255))
         text11 = font.render(str(player2.rect.y), True, (255,255,255))
-        text12 = font.render(str(collision.checkCollision(playerObjects)[6]), True, (255,255,255))
-        text13 = font.render(str(collision.checkCollision(playerObjects)[7]), True, (255,255,255))
+        text12 = font.render(str(objectCollide[6]), True, (255,255,255))
+        text13 = font.render(str(objectCollide[7]), True, (255,255,255))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
         
-        for value in range(0, len(collision.arrays)):
-            for value2 in range(0, len(collision.arrays)):
-                collision.lines[value].append(collision.surface)
-                collision.screen.blit(collision.lines[value][value2], (collision.arrays[value][value2][0], collision.arrays[value][value2][1]))
+        print(objectCollide)
+        settings.screen.fill((0,0,0))
+        # for value in range(0, len(objectCollide), 4):
+        #     x1 = objectCollide[value]
+        #     x2 = objectCollide[value+1]
+        #     y1 = objectCollide[value+2]
+        #     y2 = objectCollide[value+3]
+        #     collision.screen.blit(collision.surface, (collision.arrays[x1][y1][1], collision.arrays[x1][y1][0]))
+
+        # for i in range(0, len(objectCollide), 4):
+        #     x1 = objectCollide[i]
+        #     y1 = objectCollide[i+2]
+
+        #     collision.screen.blit(collision.surface, (collision.arrays[y1][x1][0], collision.arrays[y1][x1][1]))
+        
+        for value in range(0, 8, 2):
+            collision.screen.blit(collision.surface, (collision.arrays[objectCollide[value]][objectCollide[value+1]][0], collision.arrays[objectCollide[value]][objectCollide[value+1]][1]))
+            collision.screen.blit(collision.surface, (collision.arrays[objectCollide[value]][objectCollide[value-1]][0], collision.arrays[objectCollide[value]][objectCollide[value-1]][1]))
+        
 
         settings.clock.tick(60)
         playerGroup.update()
-        settings.screen.blit(text1, text1_rect)
-        settings.screen.blit(text2, text2_rect)
-        settings.screen.blit(text3, text3_rect)
-        settings.screen.blit(text4, text4_rect)
-        settings.screen.blit(text5, text5_rect)
-        settings.screen.blit(text6, text6_rect)
-        settings.screen.blit(text7, text7_rect)
-        settings.screen.blit(text8, text8_rect)
-        settings.screen.blit(text9, text9_rect)
-        settings.screen.blit(text10, text10_rect)
-        settings.screen.blit(text11, text11_rect)
-        settings.screen.blit(text12, text12_rect)
-        settings.screen.blit(text13, text13_rect)
+        settings.screen.blit(text1, text1_rect);settings.screen.blit(text2, text2_rect);settings.screen.blit(text3, text3_rect);settings.screen.blit(text4, text4_rect);settings.screen.blit(text5, text5_rect);settings.screen.blit(text6, text6_rect);settings.screen.blit(text7, text7_rect);settings.screen.blit(text8, text8_rect);settings.screen.blit(text9, text9_rect);settings.screen.blit(text10, text10_rect);settings.screen.blit(text11, text11_rect);settings.screen.blit(text12, text12_rect);settings.screen.blit(text13, text13_rect)
         playerGroup.draw(settings.screen)
         pygame.display.flip()
 

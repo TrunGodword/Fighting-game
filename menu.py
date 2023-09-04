@@ -1,10 +1,3 @@
-import bisect
+array1 = [0, 7, 1, 7, 3, 5, 4, 6]
 
-def find_position(number, array):
-    index = bisect.bisect_left(array, number)
-    return index
-
-array = [0, 60, 120, 180, 240, 320]
-number = 87
-
-print(find_position(number, array))
+print(array1[-1])
