@@ -1,6 +1,6 @@
 import pygame
 
-screenNum = 1
+screenNum = 3
 clock = pygame.time.Clock()
 screen_width = [640, 1024, 1920]
 screen_height = [480, 768, 1080]

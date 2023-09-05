@@ -1,4 +1,4 @@
-import pygame, settings, animation
+import pygame, settings
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, up, down, left, right, color, health, attackA, sizex, sizey):
@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.jumpcd = 40
         self.initialmass = self.mass
         self.dt = round(1/60, 4)
-        self.state = ["idle", "jumping", "attacking"]
+        # self.state = ["idle", "jumping", "attacking"]
         
         self.up =  up
         self.down = down

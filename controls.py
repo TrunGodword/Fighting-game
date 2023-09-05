@@ -65,7 +65,7 @@ class Controls_Handler():
 
     def setup(self):
         self.selected = False
-        self.font = pygame.font.Font("assets/RetroFont.ttf", 20)
+        self.font = pygame.font.Font("Settings/Font/RetroFont.ttf", 20)
         self.cursor_dict = {}
         self.curr_index = 0
         i = 0
