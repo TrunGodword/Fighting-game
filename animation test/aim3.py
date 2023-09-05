@@ -50,6 +50,6 @@ while True:
 	# Drawing
 	screen.fill((122,122,122))
 	moving_sprites.draw(screen)
-	moving_sprites.update(0.2)
+	moving_sprites.update(0.1)
 	pygame.display.flip()
 	clock.tick(60)

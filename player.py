@@ -5,6 +5,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, up, down, left, right, color, health, attackA, sizex, sizey):
         super().__init__()
         self.image = pygame.Surface((sizex, sizey))
+        self.body = pygame.image.load("./assets/Samurai/air1.png")
         self.color = (color)
         self.image.fill((color))
         self.rect = self.image.get_rect()

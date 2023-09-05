@@ -5,9 +5,9 @@ from controls import Controls_Handler
 
 ################################# LOAD UP A BASIC WINDOW #################################
 pygame.init()
-DISPLAY_W, DISPLAY_H = 480, 270
-canvas = pygame.Surface((DISPLAY_W,DISPLAY_H))
-window = pygame.display.set_mode(((DISPLAY_W * 2,DISPLAY_H * 2)))
+screen = pygame.display.set_mode(((1024,768)))
+maxWidth, maxHeight = screen.get_width(), screen.get_height()
+canvas = pygame.Surface((maxWidth/2,maxHeight/2))
 running = True
 
 actions = {"Left": False, "Right": False, "Up": False, "Down": False, "Start": False, "Action1": False}
@@ -36,6 +36,9 @@ while running:
                 actions['Start'] = True
             if event.key == control_handler.controls['Action1']:
                 actions['Action1'] = True
+            if event.key == control_handler.controls['Action1']:
+                actions['Action1'] = True
+
 
         if event.type == pygame.KEYUP:
             if event.key == control_handler.controls['Left']:
@@ -56,6 +59,6 @@ while running:
     ################################# RENDER WINDOW AND DISPLAY #################################
     canvas.fill((135, 206, 235))
     control_handler.render(canvas)
-    window.blit(pygame.transform.scale(canvas, (DISPLAY_W * 2,DISPLAY_H * 2) ), (0,0))
+    screen.blit(pygame.transform.scale(canvas, (maxWidth,maxHeight) ), (0,0))
     pygame.display.update()
     reset_keys(actions)

@@ -24,9 +24,13 @@ def create_save():
     new_save = {
     "controls":{
         "0" :{"Left": pygame.K_a, "Right": pygame.K_d, "Up": pygame.K_w, "Down": pygame.K_s, 
-            "Start": pygame.K_RETURN, "Action1": pygame.K_SPACE},
+            "Start": pygame.K_RETURN, "Light Attack": pygame.K_j,
+            "Medium Attack": pygame.K_k, "Hard Attack": pygame.K_l, "Jump": pygame.K_i,
+            "Focus": pygame.K_LSHIFT},
         "1" :{"Left": pygame.K_a, "Right": pygame.K_d, "Up": pygame.K_w, "Down": pygame.K_s, 
-            "Start": pygame.K_RETURN, "Action1": pygame.K_SPACE}
+            "Start": pygame.K_RETURN, "Light Attack": pygame.K_j,
+            "Medium Attack": pygame.K_k, "Hard Attack": pygame.K_l, "Jump": pygame.K_i,
+            "Focus": pygame.K_LSHIFT},
         },
     "current_profile": 0
     }

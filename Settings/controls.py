@@ -13,7 +13,7 @@ class Controls_Handler():
         else: self.navigate_menu(actions)
 
     def render(self, surface):
-        self.draw_text(surface, "Control Profile " + str(self.curr_block+1) , 20, pygame.Color((0,0,0)), 480 / 2, 270/8)
+        self.draw_text(surface, "Input Settings for Player " + str(self.curr_block+1) , 20, pygame.Color((0,0,0)), 480 / 2, 270/8)
         self.display_controls(surface, self.save_file["controls"][str(self.curr_block)])
         if self.curr_block == self.save_file["current_profile"]: self.draw_text(surface, "*"  , 20, pygame.Color((0,0,0)), 20, 20)
 

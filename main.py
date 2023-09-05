@@ -1,4 +1,4 @@
-import sys, pygame, player, collision, settings, screen1, screen2, screen3
+import sys, pygame, settings, screen1, screen3
 
 
 def run_game():
@@ -9,11 +9,12 @@ def run_game():
             if event.type == pygame.QUIT:
                 sys.exit()
 
-        if settings.screenNum == 1:
-            screen1.screen1()
-        elif settings.screenNum == 2:
-            screen2
-        elif settings.screenNum == 3:
-            screen3.menu()
+        match settings.screenNum:
+            case 1:
+                screen1.screen1()
+            case 2:
+                print("Much to be done here")
+            case 3:
+                screen3.menu()
 
 run_game()

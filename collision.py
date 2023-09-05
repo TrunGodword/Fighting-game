@@ -6,7 +6,7 @@ screen = settings.pygame.display.get_surface()
 
 maxWidth, maxHeight = screen.get_width(), screen.get_height()
 
-width = maxWidth // 8; height = maxHeight// 8
+width = maxWidth // 6; height = maxHeight// 6
 array1= []; array2= []; array3= []; array4= []; array5= []; array6= []; array7= []; array8= []
 
 array1.append([0, 0]); array2.append([width, 0]); array3.append([width*2, 0]); array4.append([width*3, 0]); array5.append([width*4, 0]); array6.append([width*5, 0]); array7.append([width*6, 0]); array8.append([width*7, 0])
@@ -24,7 +24,7 @@ ylines = [array1[0][1], array1[1][1], array1[2][1], array1[3][1], array1[4][1], 
 surface = pygame.Surface((width, height))
 
 def position(array, number):
-    index = bisect.bisect_left(array, number)
+    index = bisect.bisect_right(array, number)
     return index
 
 def checkCollision(object):
