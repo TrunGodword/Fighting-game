@@ -11,7 +11,7 @@ def run_game():
 
         match settings.screenNum:
             case 1:
-                screen1.screen1()
+                screen1.play()
             case 2:
                 screen2.run()
             case 3:

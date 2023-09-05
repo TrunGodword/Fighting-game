@@ -6,7 +6,7 @@ def createText(input, color, size):
     text = font.render(str(input), True, (color))
     return text
 
-def screen1():
+def play():
     pygame.init()
     player1 = player.Player(100, 100, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, (255, 0, 0), 100, pygame.K_j, 50, 70)
     player2 = player.Player(500, 100, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, (0, 255, 0), 100, pygame.K_k, 50, 70)

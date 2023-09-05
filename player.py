@@ -47,7 +47,7 @@ class Player(pygame.sprite.Sprite):
         if keys[self.right]:
             self.rect.x += self.speed
         if keys[self.up] and self.jumping == False:
-            self.mass = -20# -(self.mass)
+            self.mass = -20
             self.jumping = True
 
         if self.rect.left < 0:

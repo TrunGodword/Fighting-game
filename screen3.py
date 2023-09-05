@@ -1,10 +1,9 @@
-import pygame, sys, settings, screen2
+import pygame, sys, settings
 from screen1 import createText
 
 pygame.init()
 
 def menu():
-    global screenNum
     while True:
         settings.screen.fill((0,0,0))
         settings.screen.blit(createText("Fighting Game Project", (255,255,255), 84), (settings.maxWidth/2-320, 70))
