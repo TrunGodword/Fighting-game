@@ -1,4 +1,4 @@
-import sys, pygame, settings, screen1, screen3
+import sys, pygame, settings, screen1, screen2, screen3
 
 
 def run_game():
@@ -13,7 +13,7 @@ def run_game():
             case 1:
                 screen1.screen1()
             case 2:
-                print("Much to be done here")
+                screen2.run()
             case 3:
                 screen3.menu()
 

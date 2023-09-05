@@ -1,4 +1,4 @@
-import pygame, sys, settings
+import pygame, sys, settings, screen2
 from screen1 import createText
 
 pygame.init()
@@ -31,7 +31,8 @@ def menu():
                     print(settings.screenNum)
                     return
                 if button_settings.collidepoint((mx, my)):
-                    print("Much to be done here")
+                    settings.screenNum = 2
+                    return
                 if button_quit.collidepoint((mx, my)):
                     sys.exit()
 
