@@ -1,6 +1,5 @@
 import sys, pygame, settings, screen1, screen2, screen3
 
-
 def run_game():
     pygame.init()
 

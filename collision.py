@@ -6,7 +6,7 @@ screen = settings.pygame.display.get_surface()
 
 maxWidth, maxHeight = screen.get_width(), screen.get_height()
 
-width = maxWidth // 6; height = maxHeight// 6
+width = maxWidth // 10; height = maxHeight// 10
 array1= []; array2= []; array3= []; array4= []; array5= []; array6= []; array7= []; array8= []
 
 array1.append([0, 0]); array2.append([width, 0]); array3.append([width*2, 0]); array4.append([width*3, 0]); array5.append([width*4, 0]); array6.append([width*5, 0]); array7.append([width*6, 0]); array8.append([width*7, 0])
